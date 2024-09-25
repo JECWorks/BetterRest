@@ -27,14 +27,24 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             Form {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("When do you want to wake up?")
-                        .font(.headline)
+//                VStack(alignment: .leading, spacing: 0) {
+//                    Text("When do you want to wake up?")
+//                        .font(.headline)
+//                    
+//                    DatePicker("Please enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute)
+//                        .labelsHidden()
+//                }
+                Section {
                     
                     DatePicker("Please enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute)
                         .labelsHidden()
+                } header: {
+                    HStack {
+                        Image(systemName: "clock")
+                        Text("When do you want to wake up?")
+                            .font(.headline)
+                    }
                 }
-
 
 
                 VStack(alignment: .leading, spacing: 0) {
@@ -80,6 +90,8 @@ struct ContentView: View {
             
             alertTitle = "Your ideal bedtime is..."
             alertMessage = sleepTime.formatted(date: .omitted, time: .shortened)
+        
+    
             
         } catch {
             alertTitle = "Error"
